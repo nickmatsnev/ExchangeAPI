@@ -1,0 +1,98 @@
+<h1 id="interview-assignment---backend-developer---currency-exchange-rates">Interview Assignment - Backend developer - Currency Exchange rates</h1>
+<p>Create a Currency Exchange API that will leverage another API for currency exchange rates.</p>
+<ul>
+<li>The API will be written in TypeScript and run on NodeJS, bonus if it uses the NextJS framework.</li>
+<li>This is not a hackathon. We are looking for a solution that would be long-term maintainable and not hacky, we are evaluating the attention to detail, adhering to SOLID principles. Think about the next person that would be new to this codebase and should continue with the work.</li>
+<li>Test coverage is also a valid plus.</li>
+<li>Use git, we also prefer to read through nice commit history.</li>
+<li>Publish this code on your GitHub, it should be publically available, then send a link.</li>
+<li>Work with the results of <a href="https://rapidapi.com/fyhao/api/currency-exchange/">currency-exchange</a> API<br>Here is your API key for RapidAPI: <code>X-RapidAPI-Key: 5c40b1f0d7msh16bd9999dee7042p1ad946jsn982ef6081bdb</code></li>
+<li>The only valid currencies are those that are returned from <code>/listquotes</code> endpoint and <code>CZK</code>, any other value should be treated as invalid.</li>
+<li>Consider that input might not be valid, responses can be invalid, the currency-exchange API might not be available too. Employ defensive programming.</li>
+</ul>
+<h2 id="api-endpoints">API endpoints</h2>
+<p>These are the endpoints you will create:</p>
+<h3 id="minmax">MinMax</h3>
+<p>GET <code>/minmax</code></p>
+<ul>
+<li>An endpoint will return the lowest and highest exchange rate.</li>
+</ul>
+<h4 id="response-example">Response example</h4>
+<pre><code class="language-json">{
+    max: {
+        currency: &quot;EUR&quot;,
+        exchangeRate: 24.71
+    },
+    min: {
+        currency: &quot;AUD&quot;,
+        exchangeRate: 16.58
+    }
+}
+</code></pre>
+<h3 id="results">Results</h3>
+<p>GET <code>/results?currency=czk</code></p>
+<ul>
+<li>JSON result of currency conversion.</li>
+<li>query param <code>currency</code> will determine the currency to convert to.</li>
+<li>if currency query param is not provided, the default currency will be <code>CZK</code>.<blockquote>
+<p>The currencies will be sorted in descending order, from highest value in CZK to lowest.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="response-example-1">Response example</h4>
+<pre><code class="language-json">[
+    &quot;1. 1 EUR -&gt; 24.71 CZK&quot;,
+    &quot;2. 1 USD -&gt; 22.42 CZK&quot;,
+    &quot;15. 1 AUD -&gt; 16.58 CZK&quot;
+]
+</code></pre>
+<h3 id="export">Export</h3>
+<p>GET <code>/results/export?currency=czk</code></p>
+<ul>
+<li>query param <code>currency</code> will determine the currency to convert to.</li>
+<li>if currency query param is not provided, the default currency will be <code>CZK</code>.</li>
+<li>An endpoint that will download a <code>.txt</code> file with the current exchange rate.</li>
+<li>the last result will not have a comma <code>,</code> at the end of the line.<blockquote>
+<p>The currencies will be sorted in descending order, from highest value in CZK to lowest.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="response-example-2">Response example</h4>
+<pre><code class="language-txt">1. 1 EUR -&gt; 24.71 CZK,
+2. 1 USD -&gt; 22.42 CZK,
+//...
+15. 1 AUD -&gt; 16.58 CZK
+</code></pre>
+<h3 id="convert">Convert</h3>
+<p>POST <code>/convert</code></p>
+<ul>
+<li>We post JSON body to</li>
+</ul>
+<h4 id="request-example">Request example</h4>
+<pre><code class="language-json">[
+   {
+      &quot;from&quot;:{
+         &quot;currency&quot;:&quot;EUR&quot;,
+         &quot;quantity&quot;:2
+      },
+      &quot;to&quot;:&quot;CZK&quot;
+   },
+   {
+      &quot;from&quot;:{
+         &quot;currency&quot;:&quot;USD&quot;,
+         &quot;quantity&quot;:4
+      },
+      &quot;to&quot;:&quot;AUD&quot;
+   }
+]
+</code></pre>
+<h4 id="response-example-3">Response example</h4>
+<pre><code class="language-json">[
+    &quot;2 EUR - CZK -&gt; 49.42&quot;,
+    &quot;4 USD - AUD -&gt; 5,41&quot;
+]
+</code></pre>
+<h2 id="documentation">Documentation</h2>
+<ul>
+<li>Create a README.md for the project, where you describe how to install and run it.</li>
+</ul>
