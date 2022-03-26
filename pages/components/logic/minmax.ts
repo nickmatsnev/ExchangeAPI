@@ -24,7 +24,7 @@ export async function getMinMax() {
 
         let currentExchange: any = await getExchange(allCurrencies[i], 'CZK');
 
-        if (isNaN(currentExchange)) {
+        if (isNaN(currentExchange) || currentExchange == 0) {
 
             console.log(allCurrencies[i]);
             console.log('Incorrect exchange value');

@@ -1,13 +1,18 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from 'next'
+import { NextApiRequest, NextApiResponse } from "next";
+import {getResults} from "../../components/logic/results"
 
 type Data = {
-  name: string
+  data : string[]
 }
 
-export default function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<Data>
-) {
-  res.status(200).json({ name: 'John Doe' })
-}
+export default async (request: NextApiRequest, response: NextApiResponse<Data>) => {
+
+  const {
+    query: {  currency },
+    method,
+  } : NextApiRequest = request;
+  console.log(method);
+
+  let result : string[] = await getResults( currency.toString().toUpperCase());
+  return response.status(200).json({ data : result });
+};
