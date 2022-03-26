@@ -1,6 +1,7 @@
 import { getExchange } from '../rapidAPI/getExchange';
 import {getAllCurrencies} from '../allCurrencies'
 
+// simple type to cover the needs for struct here
 type Currency = {
   name: string,
   value: number
@@ -8,15 +9,21 @@ type Currency = {
 
 
 export async function getResults(givenCurrencyName : string) {
+  //precondition:
+  //specified currency
+  //postcondition:
+  //returns a list of currency rates and their names
+
 
   let givenCurrency : string = givenCurrencyName;
-
+  // error handling
   if(givenCurrencyName === null || givenCurrencyName == ' '){
     givenCurrency = 'CZK';
   }
 
   let allCurrencies: string[] = getAllCurrencies();
-
+  
+  // error handling
   if(!allCurrencies.includes(givenCurrency)){
     return ["Error!"];
   }
@@ -27,6 +34,8 @@ export async function getResults(givenCurrencyName : string) {
     if(allCurrencies[i] != givenCurrency){
       let currentExchangeValue: any = await getExchange(allCurrencies[i], givenCurrency);
       console.log(currentExchangeValue);
+
+      // error handling
       if (isNaN(currentExchangeValue) || currentExchangeValue == 0) {
   
           console.log(allCurrencies[i]);

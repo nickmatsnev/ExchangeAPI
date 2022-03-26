@@ -12,7 +12,13 @@ type Currencies = {
 
 export async function getCurrencies() {
   try {
-    // 👇️ const response: Response
+
+  // precondition:
+  // RapidAPI working
+  // postcondition:
+  // returns available currencies 
+
+    //  const response: Response
     const response = await fetch('https://currency-exchange.p.rapidapi.com/listquotes', {
       method: 'GET',
       headers: {
@@ -26,7 +32,7 @@ export async function getCurrencies() {
       throw new Error(`Error! status: ${response.status}`);
     }
 
-    // 👇️ const result: GetUsersResponse
+    //  const result: string[]
     const result = (await response.json()) as string[];
 
     console.log('ress: ', JSON.stringify(result, null, 4));
