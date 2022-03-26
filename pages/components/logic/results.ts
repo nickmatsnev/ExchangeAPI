@@ -18,7 +18,7 @@ export async function getResults(givenCurrencyName : string) {
   let allCurrencies: string[] = getAllCurrencies();
 
   if(!allCurrencies.includes(givenCurrency)){
-    return "Error!";
+    return ["Error!"];
   }
 
   let listOfCurrencies : Currency[] = [];
