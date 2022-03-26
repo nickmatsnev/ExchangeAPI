@@ -5,14 +5,19 @@ Hello, welcome to my implementation of the Interview Assignment for the position
 
 ## Prerequisites
 
+To use the following API endpoints you should have installed on your computer following software:
+
+- [npm](https://docs.npmjs.com/cli/v8/commands/npm-install)
+
+- [next.js](https://nextjs.org/docs)
+
+- [TypeScript](https://www.typescriptlang.org/download)
+
+- [node.js](https://nodejs.org/en/download/)
 
 ## Installation
 
-### Windows
-
- TODO
-
-### Linux&Mac 
+### Linux&Mac&WSL
 
 First, run the development server:
 
@@ -34,7 +39,7 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 
 ## Running tests
 
- TODO
+I have provided simple `node-mocks-http` tests in the folder [`__tests__`](/currency_exchange/__tests__/), even though you can find better solutions at [testing section of next.js documentation](https://nextjs.org/docs/testing).
 
 ## Deployment
 

@@ -23,6 +23,10 @@ type MinMax = {
 
 // this is needed to handle the logic 
 async function getMM(){
+  //precondition:
+  //no precondition
+  // returns data object with minimal and maximal currency rate
+
   var minMax = (await getMinMax()).minmax;
   
   let minimalCurrency: Currency = { currency: minMax.minName, exchangeRate: minMax.minValue };
@@ -32,10 +36,11 @@ async function getMM(){
 }
 
 // we send wrapped currencies
-export default async function handler(
+export default async function handlerMinMax(
   req: NextApiRequest,
   res: NextApiResponse<MinMax>
 ): Promise<void> {
+  // returns the min max object
   let currentOut = await getMM();
   return res.status(200).json({max: currentOut.max, min: currentOut.min});
 }

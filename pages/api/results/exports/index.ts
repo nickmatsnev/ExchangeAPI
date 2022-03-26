@@ -5,7 +5,7 @@ import { createReadStream, statSync } from 'fs'
 const fs = require("fs");
 import path from 'path'
 
-export default async function handler(
+export default async function handlerExports(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
@@ -50,5 +50,4 @@ export default async function handler(
     readStream.pipe(res)
     readStream.on('end', resolve)
   })
-
 }

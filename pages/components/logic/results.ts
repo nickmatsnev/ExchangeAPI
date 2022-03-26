@@ -28,6 +28,7 @@ export async function getResults(givenCurrencyName : string) {
     return ["Error!"];
   }
 
+  // main list which we will return
   let listOfCurrencies : Currency[] = [];
 
   for (let i = 0; i < allCurrencies.length - 1; i++) {
@@ -52,6 +53,7 @@ export async function getResults(givenCurrencyName : string) {
   listOfCurrencies.sort((a, b) => (a.value > b.value ? -1 : 1));
   let currenciesSortedString : string[] = []; 
   for(let i = 0; i < listOfCurrencies.length - 1; i++){
+    // check the last one to avoid comma
     if(i != listOfCurrencies.length - 2){
       currenciesSortedString.push((i + 1) + ". 1 " + listOfCurrencies[i].name + " -> " + listOfCurrencies[i].value + " " + givenCurrency + ",");
     }else{
